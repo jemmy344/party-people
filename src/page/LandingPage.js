@@ -1,8 +1,12 @@
 import React from 'react'
+import Populardestinations from '../components/PopularDesination'
+
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div>
+    <Populardestinations/>
+    </div>
   )
 }
 
