@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles.css"
-
+import { v4 as uuid } from 'uuid';
 function Populardestinations() {
     return (
         <div className="rentals-container">
@@ -13,7 +13,7 @@ function Populardestinations() {
             <Row xs={1} md={2} lg={4} xl={4} className="g-4">
                 {/* to show 4 cards */}
                 {Array.from({ length: 4 }).map((_, idx) => (
-                    <Col>
+                    <Col key={uuid()}>
                         <Card>
                             <Card.Img variant="top" src="http://via.placeholder.com/640x360" />
                             <Card.Body>
