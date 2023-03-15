@@ -1,10 +1,6 @@
 import React from "react";
-import LandingPage from "./page/LandingPage";
+import { Search } from "./components/Search";
 
-
-
-const App = () => (<LandingPage />)
-
-
+const App = () => <Search />;
 
 export default App;
