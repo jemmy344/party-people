@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "locations",
+  "info": {
+    "singularName": "location",
+    "pluralName": "locations",
+    "displayName": "location",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "place": {
+      "type": "string"
+    },
+    "minPricePerDay": {
+      "type": "biginteger"
+    },
+    "maxPricePerDay": {
+      "type": "biginteger"
+    },
+    "actualPricePerDay": {
+      "type": "biginteger"
+    },
+    "bedsCount": {
+      "type": "integer"
+    },
+    "roomCount": {
+      "type": "integer"
+    },
+    "bathCount": {
+      "type": "integer"
+    },
+    "isJacuzziPresent": {
+      "type": "boolean",
+      "default": false
+    },
+    "weather": {
+      "type": "enumeration",
+      "enum": [
+        "Sunshine",
+        "Cloudy",
+        "Partly Cloudy",
+        "Overcast",
+        "Windy",
+        "Rainy",
+        "Snowy",
+        "Foggy",
+        "Thunder & Lightening"
+      ]
+    },
+    "temperature": {
+      "type": "decimal"
+    },
+    "temperatureUnit": {
+      "type": "enumeration",
+      "enum": [
+        "Fahrenheit",
+        "Celsius"
+      ]
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USD($)",
+        "POUNDS(£)"
+      ]
+    },
+    "avalabilityPeriod": {
+      "type": "integer"
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}
