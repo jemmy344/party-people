@@ -2,6 +2,7 @@ import React from 'react'
 import Populardestinations from '../components/PopularDesination'
 import SpecialOffers from '../components/SpecialOffers'
 import { Search } from '../components/Search'
+import Footer from '../components/Footer'
 
 
 const LandingPage = () => {
@@ -12,6 +13,7 @@ const LandingPage = () => {
       </div>
     <Populardestinations/>
     <SpecialOffers />
+    <Footer />
     </div>
   )
 }
