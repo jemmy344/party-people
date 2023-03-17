@@ -2,34 +2,29 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export const Search = () => {
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState("");
 
-
+  // const APIKEY = kaC44nEKbqApNIGjNUt8hulGkGIVtoPN
 
   const getPropertyData = () => {
     const options = {
-      method: 'GET',
-      url: 'https://zoopla.p.rapidapi.com/auto-complete',
-      params: { search_term: input, search_type: 'listings' },
-      headers: {
-        'X-RapidAPI-Key': '32165086ecmshd3c88bb70eb641ep123dbbjsn5a6cf8acbf25',
-        'X-RapidAPI-Host': 'zoopla.p.rapidapi.com'
-      }
-    }
-    axios.request(options).then(function (response) {
-
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    })
-  }
-
+      method: "GET",
+      url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${input}}&apikey=kaC44nEKbqApNIGjNUt8hulGkGIVtoPN`,
+    };
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;
-    console.log(e);
+    // console.log(e);
     setInput(value);
-   
   };
 
   return (
@@ -39,24 +34,3 @@ export const Search = () => {
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
