@@ -1,0 +1,94 @@
+.navbar-container {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    /* bright blue */
+    background-color: rgba(0, 150, 255, 1)
+}
+
+.navbar-container ul a {
+    text-decoration: none;
+    font-size: 18px;
+    /* seperate anchor link */
+    margin: 5px;
+    color: #fff;
+}
+
+/* adds red effect when user hovers over link */
+.navbar-container ul a:hover {
+    color: red;
+}
+
+/* added opacity to see background image in navbar */
+.h1-container {
+    background-color: rgba(250, 250, 250, 0.9);
+    /* creates a round border around h1 title */
+    border-radius: 25px;
+    padding: 12px;
+}
+
+.h1-container h1 {
+    color: blue;
+    font-size: 28px;
+    text-align: center;
+}
+
+h6 {
+    color: white;
+    margin-top: 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.logo {
+    margin-top: 4px;
+}
+
+
+
+
+/* responsive design for tablet users */
+
+@media only screen and (min-width: 768px) {
+    .h1-container h1 {
+        background-color: rgba(250, 250, 250, 1);
+        font-size: 38px;
+    }
+
+    .header-text {
+        margin-top: 8px;
+        background: blue;
+        border-radius: 20px;
+        font-size: 18px;
+    }
+
+    .navbar-container ul a:hover {
+        color: red;
+    }
+
+    .navbar-header {
+        background-size: cover;
+    }
+
+    .logo {
+        margin-right: auto;
+        margin-left: 5px;
+    }
+}
+
+/* For phone users */
+
+@media only screen and (max-width: 480px) {
+    .h1-container h1 {
+        background-color: rgba(250, 250, 250, 1);
+        font-size: 26px;
+    }
+
+    .header-text {
+        margin-top: 8px;
+        background: blue;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+
+}
