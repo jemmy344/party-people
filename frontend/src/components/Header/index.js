@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Button, Container, Modal } from "react-bootstrap";
-import backgroundImage from "../../assets/lounge.jpg";
+import { Button, Container, Modal, Navbar } from "react-bootstrap";
+import backgroundImage from "../../assets/guide.jpg";
+import logo from "../../assets/tour-image.png"
+import "./styles.css"
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,8 +19,22 @@ const Header = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         position: "relative",
-      }}
+      }} 
+     className="navbar-header"
     >
+      <div className="navbar-container">
+        <div className="logo">
+          <img src={logo} width="36px" height="36px" className="logo"></img>
+        </div>
+        <Navbar>
+          <ul>
+            <a href="#">Attractions</a>
+            <a href="#">Events</a>
+            <a href="#">Architecture</a>
+            <a href="#">History</a>
+          </ul>
+        </Navbar>
+      </div>
       <Container>
         <div
           style={{
@@ -30,16 +46,12 @@ const Header = () => {
             marginBottom: "2rem", // add margin bottom to div container
           }}
         >
-          <h1
-            style={{
-              color: "white",
-              fontSize: "4rem",
-              textAlign: "center",
-            }}
-          >
+          <div className="h1-container">
+          <h1>
             Plan Your Trip With Travel House
           </h1>
-          <p>The best travel your journey respectful of the environment.</p>
+          </div>
+          <h6 className="header-text">The best travel agency on the web</h6>
           <Button variant="primary" onClick={handleShowModal} style={{ marginTop: "1rem" }}>
             Learn More
           </Button>
