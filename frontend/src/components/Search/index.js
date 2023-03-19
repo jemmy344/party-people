@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { EventCard } from "../EventCard";
+import { Container, Col, Row } from "react-bootstrap";
 
 export const Search = () => {
   const [input, setInput] = useState("");
+  const [eventMap, setEventMap] = useState(new Map());
 
   const getEventData = () => {
     const options = {
@@ -12,10 +15,7 @@ export const Search = () => {
     axios
       .request(options)
       .then(function (response) {
-        // console.log(response.data._embedded.events);
-        // console.log(response.data._embedded.events[0].id);
-
-        const eventMap = new Map();
+        const newEventMap = new Map();
         response.data._embedded.events.forEach((event) => {
           const id = event.id;
           const eventName = event.name;
@@ -25,9 +25,16 @@ export const Search = () => {
           const venue = event._embedded.venues[0].name;
           const venueInfo = event._embedded.venues[0].url;
 
-          eventMap.set(id, { eventName, image, date, time, venue, venueInfo });
+          newEventMap.set(id, {
+            eventName,
+            image,
+            date,
+            time,
+            venue,
+            venueInfo,
+          });
         });
-        console.log(eventMap);
+        setEventMap(newEventMap);
       })
       .catch(function (error) {
         console.error(error);
@@ -36,14 +43,22 @@ export const Search = () => {
 
   const handleChange = (e) => {
     const { value } = e.target;
-    // console.log(e)
     setInput(value);
   };
 
   return (
-    <div>
+    <>
       <input type="text" value={input} onChange={handleChange} />
-      <button onClick={getEventData}>search</button>
-    </div>
+      <button onClick={getEventData}>Search</button>
+      <Container>
+        <Row xs={1} md={2} lg={4} xl={4} className="g-4">
+          {[...eventMap.values()].map((event) => (
+            <Col>
+              <EventCard event={event} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </>
   );
 };
