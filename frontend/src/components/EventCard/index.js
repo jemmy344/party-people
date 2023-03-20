@@ -12,9 +12,10 @@ export const EventCard = ({ event }) => {
   const handleCardClick = () => {
     setShowModal(true);
     const artistName = event.eventName.split(":")[0].trim();
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${artistName}&type=video&key=${YOUTUBE_API_KEY}`)
+    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=${artistName}&type=video&key=${YOUTUBE_API_KEY}`)
       .then(response => {
         const videoId = response.data.items[0].id.videoId;
+        console.log(response.data.items[0].id.videoId)
         setMostPopularClip(`https://www.youtube.com/watch?v=${videoId}`);
       })
       .catch(error => {
