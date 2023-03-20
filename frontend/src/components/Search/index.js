@@ -54,7 +54,7 @@ export const Search = () => {
         <Row xs={1} md={2} lg={4} xl={4} className="g-4">
           {[...eventMap.values()].map((event) => (
             <Col>
-              <EventCard event={event} />
+              <EventCard event={event} artistName={input}/>
             </Col>
           ))}
         </Row>
