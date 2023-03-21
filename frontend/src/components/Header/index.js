@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, Container, Modal, Navbar } from "react-bootstrap";
-import backgroundImage from "../../assets/guide.jpg";
-import logo from "../../assets/tour-image.png"
+import { Button, Container, Modal } from "react-bootstrap";
+import backgroundImage from "../../assets/partyPeople.jpg";
 import "./styles.css"
 
 const Header = () => {
@@ -22,19 +21,6 @@ const Header = () => {
       }} 
      className="navbar-header"
     >
-      <div className="navbar-container">
-        <div className="logo">
-          <img src={logo} width="36px" height="36px" className="logo"></img>
-        </div>
-        <Navbar>
-          <ul>
-            <a href="#">Attractions</a>
-            <a href="#">Events</a>
-            <a href="#">Architecture</a>
-            <a href="#">History</a>
-          </ul>
-        </Navbar>
-      </div>
       <Container>
         <div
           style={{
@@ -48,22 +34,21 @@ const Header = () => {
         >
           <div className="h1-container">
           <h1>
-            Plan Your Trip With Travel House
+            Party People
           </h1>
           </div>
-          <h6 className="header-text">The best travel agency on the web</h6>
+          <h6 className="header-text">The Best Place to look where to party !</h6>
           <Button variant="primary" onClick={handleShowModal} style={{ marginTop: "1rem" }}>
             Learn More
           </Button>
         </div>
 
-        <Modal show={showModal} onHide={handleShowModal}>
+        <Modal show={showModal} onHide={handleShowModal} centered>
           <Modal.Header>
-            <Modal.Title>Travel Services</Modal.Title>
+            <Modal.Title>Party People</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            We offer a variety of travel services including flight bookings,
-            hotel reservations, and tour packages. Contact us for more information.
+            Best place to find out where your favorite artists are playing!
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleShowModal}>
