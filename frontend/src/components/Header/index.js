@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Button, Container, Modal, Navbar } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import backgroundImage from "../../assets/partyPeople.jpg";
-import logo from "../../assets/tour-image.png"
 import "./styles.css"
 
 const Header = () => {
@@ -22,19 +21,6 @@ const Header = () => {
       }} 
      className="navbar-header"
     >
-      <div className="navbar-container">
-        <div className="logo">
-          <img src={logo} width="36px" height="36px" className="logo"></img>
-        </div>
-        <Navbar>
-          <ul>
-            <a href="#">Attractions</a>
-            <a href="#">Events</a>
-            <a href="#">Architecture</a>
-            <a href="#">History</a>
-          </ul>
-        </Navbar>
-      </div>
       <Container>
         <div
           style={{
@@ -57,12 +43,12 @@ const Header = () => {
           </Button>
         </div>
 
-        <Modal show={showModal} onHide={handleShowModal}>
+        <Modal show={showModal} onHide={handleShowModal} centered>
           <Modal.Header>
             <Modal.Title>Party People</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-           Best place to find out where your favorite artists are playing !
+            Best place to find out where your favorite artists are playing!
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleShowModal}>
