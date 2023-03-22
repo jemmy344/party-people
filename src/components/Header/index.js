@@ -38,7 +38,7 @@ const Header = () => {
           </h1>
           </div>
           <h6 className="header-text">The Best Place to look where to party !</h6>
-          <Button variant="primary" onClick={handleShowModal} style={{ marginTop: "1rem" }}>
+          <Button className="learn-more-button" variant="primary" onClick={handleShowModal} style={{ marginTop: "1rem" }}>
             Learn More
           </Button>
         </div>
@@ -51,7 +51,7 @@ const Header = () => {
             Best place to find out where your favorite artists are playing!
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleShowModal}>
+            <Button className="" variant="secondary" onClick={handleShowModal}>
               Close
             </Button>
           </Modal.Footer>

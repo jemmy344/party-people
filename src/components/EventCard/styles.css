@@ -5,8 +5,9 @@
   opacity: 0.8;
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgba(23, 23, 24, 90);
+  color: #0f0e0e;
   cursor: pointer;
+  background-color: #fff !important;
 }
 
 .event-card:hover {
@@ -24,16 +25,21 @@
   object-position: top;
 }
 
+.event-card-title {
+  font-size: 1.4rem !important;
+  margin-bottom: 10px;
+}
+
 .event-card-body {
   height: 30vh;
-  background-color: rgb(241, 31, 31) !important;
+  background-color: #fff !important;
   border-radius: 24px;
 }
 
 .event-card-text {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .event-card-text ul {
@@ -45,10 +51,23 @@
   margin-top: 5%;
 }
 
-.event-card-text a {
+.event-ticket-button a {
+  padding: 8px 16px;
+  border-radius: 24px;
+  background-color: #f4511e;
+  color: #f9f7f7;
   text-decoration: none;
+  transition: 0.3s;
+  margin-right: 10px;
 }
 
-.event-card-text a:hover {
-  text-decoration: underline;
+.event-ticket-button a:hover {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+@media only screen and (max-width: 480px) {
+  .event-card-body {
+    padding-bottom: 300px;
+  }
 }
