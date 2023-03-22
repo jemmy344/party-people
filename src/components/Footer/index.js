@@ -36,7 +36,7 @@ function Footer() {
             </div>
             <div className="footer-col">
               <h4>follow us</h4>
-              <div class="social-links">
+              <div className="social-links">
                 <a href="https://en-gb.facebook.com/" target="_blank"><i className="fab fa-facebook-f"></i></a>
                 <a href="https://twitter.com/" target="_blank"><i className="fab fa-twitter"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram"></i></a>

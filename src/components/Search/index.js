@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './search.css'
+import { Dna } from 'react-loader-spinner'
+import { Col, Container, Row } from "react-bootstrap";
 import { EventCard } from "../EventCard";
-import { Container, Col, Row } from "react-bootstrap";
-import './styles.css';
 
 export const Search = () => {
-  const [input, setInput] = useState("");
-  const [eventMap, setEventMap] = useState(new Map());
-  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [eventMap, setEventMap] = useState([]);
+  const [isSearchLoading, setIsSearchLoading] = useState("");
+
 
   const getEventData = () => {
-    setLoading(true); // Set loading to true before making the API request
+    setIsSearchLoading(true); // Set loading to true before making the API request
 
     const options = {
       method: "GET",
-      url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${input}&apikey=kaC44nEKbqApNIGjNUt8hulGkGIVtoPN`,
+      url: `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${search}&apikey=kaC44nEKbqApNIGjNUt8hulGkGIVtoPN`,
     };
     axios
       .request(options)
@@ -39,38 +41,95 @@ export const Search = () => {
           });
         });
         setEventMap(newEventMap);
-        setLoading(false); // Set loading to false after the API request completes
+        setIsSearchLoading(false); // Set loading to false after the API request completes
       })
       .catch(function (error) {
         console.error(error);
-        setLoading(false); // Set loading to false if there is an error
+        setIsSearchLoading(false); // Set loading to false if there is an error
       });
   };
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setInput(value);
-  };
 
   return (
-    <>
-      <input type="text" value={input} onChange={handleChange} />
-      <button onClick={getEventData}>Search</button>
-      {/* Show the loading animation if loading is true */}
-      {loading && 
-        <div class="overlay">
-          <div class="lds-facebook"><div></div><div></div><div></div></div>
+    <div>
+      <div className="search-container">
+        <div className="card-search">
+          <form>
+            <div className="row">
+              <div className="col-md-9 form-group">
+                <label htmlFor="location">Search</label>
+                <input
+                  type="text"
+                  id="search"
+                  placeholder="search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+
+              <div className="col-md-3">
+                {
+                  isSearchLoading ? (
+                    <Dna
+                      visible={true}
+                      height="80"
+                      width="80"
+                      ariaLabel="dna-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="dna-wrapper"
+                    />
+                  ) : (
+                    <button className="search-button" type="submit" onClick={getEventData} >Search</button>
+                  )
+                }
+
+
+              </div>
+            </div>
+          </form>
         </div>
-      } 
-      <Container>
-        <Row xs={1} md={2} lg={4} xl={4} className="g-4">
-          {[...eventMap.values()].map((event) => (
-            <Col key={event.id}> {/* Add a unique key prop to the list of EventCards */}
-              <EventCard event={event} artistName={input} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </>
+      </div>
+      <div style={{
+        paddingTop: '40px',
+        margin:'0 30px'
+        
+      }}>
+        <SearchResult eventMap={eventMap} artistName={search} />
+      </div>
+    </div>
   );
 };
+
+export default Search;
+
+const SearchResult = ({ eventMap, artistName }) => (
+
+  <Container className="d-flex justify-content-center" >
+    <Row xs={1} md={2} lg={4} xl={4} className="g-4">
+      {[...eventMap.values()].map((event) => (
+        <Col key={event.id}> {/* Add a unique key prop to the list of EventCards */}
+          <EventCard event={event} artistName={artistName} />
+        </Col>
+      ))}
+    </Row>
+  </Container >
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
