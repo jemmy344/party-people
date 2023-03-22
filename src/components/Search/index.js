@@ -23,6 +23,7 @@ export const Search = () => {
       .then(function (response) {
         const newEventMap = new Map();
         response.data._embedded.events.forEach((event) => {
+  
           const id = event.id;
           const eventName = event.name;
           const image = event.images.length > 0 ? event.images[0].url : null;
@@ -30,6 +31,7 @@ export const Search = () => {
           const time = event.dates.start.localTime;
           const venue = event._embedded.venues[0].name;
           const venueInfo = event._embedded.venues[0].url;
+          const ticketInfo = event.url;
 
           newEventMap.set(id, {
             eventName,
@@ -38,9 +40,11 @@ export const Search = () => {
             time,
             venue,
             venueInfo,
+            ticketInfo,
           });
         });
         setEventMap(newEventMap);
+    
         setIsSearchLoading(false); // Set loading to false after the API request completes
         setErrorMessage("");
       })
@@ -52,7 +56,7 @@ export const Search = () => {
   };
 
   return (
-    <div>
+    <div className="main-search-container">
       <div className="search-container">
         <div className="card-search">
           <form>
@@ -123,6 +127,7 @@ const SearchResult = ({ eventMap, artistName, errorMessage }) => {
             {[...eventMap.values()].map((event) => (
               <Col key={event.id}>
                 <EventCard event={event} artistName={artistName} />
+             
               </Col>
             ))}
           </Row>
