@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { Card, Modal } from "react-bootstrap";
 import axios from "axios";
+import "./styles.css";
 
 // Event from ticketmaster response
 export const EventCard = ({ event }) => {
   const [showModal, setShowModal] = useState(false);
   const [mostPopularClip, setMostPopularClip] = useState(null);
 
-  const YOUTUBE_API_KEY = 'AIzaSyC3tagQHOY5eEdQBJEIV5sU22tJ4WhB0MA';
+  const YOUTUBE_API_KEY = "AIzaSyC3tagQHOY5eEdQBJEIV5sU22tJ4WhB0MA";
 
   const handleCardClick = () => {
     setShowModal(true);
     const artistName = event.eventName.split(":")[0].trim();
-    axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=${artistName}&type=video&key=${YOUTUBE_API_KEY}`)
-      .then(response => {
+    axios
+      .get(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=${artistName}&type=video&key=${YOUTUBE_API_KEY}`
+      )
+      .then((response) => {
         const videoId = response.data.items[0].id.videoId;
-        console.log(response.data.items[0].id.videoId)
+        console.log(response.data.items[0].id.videoId);
         setMostPopularClip(`https://www.youtube.com/watch?v=${videoId}`);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -27,22 +31,37 @@ export const EventCard = ({ event }) => {
 
   return (
     <>
-      <Card style={{ width: "18rem" }} onClick={handleCardClick}>
-        <Card.Img src={event.image} />
-        <Card.Body>
-          <Card.Title>{event.eventName}</Card.Title>
-          <Card.Text>
+      <Card
+        className="event-card"
+        style={{ width: "18rem" }}
+        onClick={handleCardClick}
+      >
+        <Card.Img className="event-card-img" src={event.image} />
+        <Card.Body className="event-card-body">
+          <Card.Title className="event-card-title">
+            {event.eventName}
+          </Card.Title>
+          <Card.Text className="event-card-text">
             <ul>
-              <li>Date:{event.date}</li>
+              <li>Date: {event.date}</li>
               <li>Time: {event.time}</li>
-              <li>Venue: {event.venue}</li>
-              <a href={event.venueInfo} target="_blank" rel="noreferrer">
-                Venue Info
-              </a>
+              {console.log(event.time)}
+              <li>
+                Venue:
+                <a href={event.venueInfo} target="_blank" rel="noreferrer">
+                  {event.venue}
+                </a>
+              </li>
+              <li className="event-ticket-button btn-block text-center mt-5">
+                <a href={event.ticketInfo} target="_blank" rel="noreferrer">
+                  Ticket Info
+                </a>
+              </li>
             </ul>
           </Card.Text>
         </Card.Body>
       </Card>
+
 
       <Modal show={showModal} onHide={handleCloseModal} size="lg">
         <Modal.Header closeButton>
@@ -54,12 +73,14 @@ export const EventCard = ({ event }) => {
               width="100%"
               height="500px"
               maxWidth="560px"
-              src={`https://www.youtube.com/embed/${mostPopularClip.split("watch?v=")[1]}`}
+              src={`https://www.youtube.com/embed/${
+                mostPopularClip.split("watch?v=")[1]
+              }`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ margin: "auto" }}
-          ></iframe>
+            ></iframe>
           )}
         </Modal.Body>
       </Modal>
