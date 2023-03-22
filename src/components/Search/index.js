@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import './search.css'
-import { Dna } from 'react-loader-spinner'
+import "./search.css";
+import { Dna } from "react-loader-spinner";
 import { Col, Container, Row } from "react-bootstrap";
 import { EventCard } from "../EventCard";
 
@@ -9,7 +9,7 @@ export const Search = () => {
   const [search, setSearch] = useState("");
   const [eventMap, setEventMap] = useState([]);
   const [isSearchLoading, setIsSearchLoading] = useState("");
-
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getEventData = () => {
     setIsSearchLoading(true); // Set loading to true before making the API request
@@ -42,13 +42,14 @@ export const Search = () => {
         });
         setEventMap(newEventMap);
         setIsSearchLoading(false); // Set loading to false after the API request completes
+        setErrorMessage("");
       })
       .catch(function (error) {
         console.error(error);
+        setErrorMessage(error);
         setIsSearchLoading(false); // Set loading to false if there is an error
       });
   };
-
 
   return (
     <div>
@@ -69,33 +70,40 @@ export const Search = () => {
               </div>
 
               <div className="col-md-3">
-                {
-                  isSearchLoading ? (
-                    <Dna
-                      visible={true}
-                      height="80"
-                      width="80"
-                      ariaLabel="dna-loading"
-                      wrapperStyle={{}}
-                      wrapperClass="dna-wrapper"
-                    />
-                  ) : (
-                    <button className="search-button" type="submit" onClick={getEventData} >Search</button>
-                  )
-                }
-
-
+                {isSearchLoading ? (
+                  <Dna
+                    visible={true}
+                    height="80"
+                    width="80"
+                    ariaLabel="dna-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="dna-wrapper"
+                  />
+                ) : (
+                  <button
+                    className="search-button"
+                    type="submit"
+                    onClick={getEventData}
+                  >
+                    Search
+                  </button>
+                )}
               </div>
             </div>
           </form>
         </div>
       </div>
-      <div style={{
-        paddingTop: '40px',
-        margin:'0 30px'
-        
-      }}>
-        <SearchResult eventMap={eventMap} artistName={search} />
+      <div
+        style={{
+          paddingTop: "40px",
+          margin: "0 30px",
+        }}
+      >
+        <SearchResult
+          eventMap={eventMap}
+          artistName={search}
+          errorMessage={errorMessage}
+        />
       </div>
     </div>
   );
@@ -103,33 +111,23 @@ export const Search = () => {
 
 export default Search;
 
-const SearchResult = ({ eventMap, artistName }) => (
-
-  <Container className="d-flex justify-content-center" >
-    <Row xs={1} md={2} lg={4} xl={4} className="g-4">
-      {[...eventMap.values()].map((event) => (
-        <Col key={event.id}> {/* Add a unique key prop to the list of EventCards */}
-          <EventCard event={event} artistName={artistName} />
-        </Col>
-      ))}
-    </Row>
-  </Container >
-)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const SearchResult = ({ eventMap, artistName, errorMessage }) => {
+  return (
+    <>
+      {/* display either no events found or the event cards */}
+      {errorMessage !== "" ? (
+        <h2>No events found</h2>
+      ) : (
+        <Container className="d-flex justify-content-center">
+          <Row xs={1} md={2} lg={4} xl={4} className="g-4">
+            {[...eventMap.values()].map((event) => (
+              <Col key={event.id}>
+                <EventCard event={event} artistName={artistName} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      )}
+    </>
+  );
+};
