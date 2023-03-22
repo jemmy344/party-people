@@ -28,21 +28,28 @@ export const EventCard = ({ event }) => {
   return (
     <>
       <Card style={{ width: "18rem" }} onClick={handleCardClick}>
-        <Card.Img src={event.image} />
+        <div style={{ position: 'relative' }}>
+          <Card.Img src={event.image} alt={event.eventName}  style={{ height: "200px", width: "100%" }}/>
+          <span style={{
+            backgroundColor: 'black',
+            color: 'white',
+            padding: '5px',
+            position: 'absolute',
+            top: '0',
+            left: '0'
+          }}>{event.date} | {event.time}</span>
+        </div>
         <Card.Body>
           <Card.Title>{event.eventName}</Card.Title>
           <Card.Text>
-            <ul>
-              <li>Date:{event.date}</li>
-              <li>Time: {event.time}</li>
-              <li>Venue: {event.venue}</li>
-              <a href={event.venueInfo} target="_blank" rel="noreferrer">
-                Venue Info
-              </a>
-            </ul>
+            <p><strong>Venue: </strong>{event.venue}</p>
+            <a href={event.venueInfo} target="_blank" rel="noreferrer">
+              Venue Info
+            </a>
           </Card.Text>
         </Card.Body>
       </Card>
+
 
       <Modal show={showModal} onHide={handleCloseModal} size="lg">
         <Modal.Header closeButton>
@@ -59,7 +66,7 @@ export const EventCard = ({ event }) => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               style={{ margin: "auto" }}
-          ></iframe>
+            ></iframe>
           )}
         </Modal.Body>
       </Modal>
