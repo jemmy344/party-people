@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Badge, Card, Modal } from "react-bootstrap";
+import {  Card, Modal } from "react-bootstrap";
 import axios from "axios";
 
 // Event from ticketmaster response
