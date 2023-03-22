@@ -9,6 +9,7 @@ export const Search = () => {
   const [search, setSearch] = useState("");
   const [eventMap, setEventMap] = useState([]);
   const [isSearchLoading, setIsSearchLoading] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const getEventData = () => {
     setIsSearchLoading(true); // Set loading to true before making the API request
@@ -41,9 +42,11 @@ export const Search = () => {
         });
         setEventMap(newEventMap);
         setIsSearchLoading(false); // Set loading to false after the API request completes
+        setErrorMessage("");
       })
       .catch(function (error) {
         console.error(error);
+        setErrorMessage(error);
         setIsSearchLoading(false); // Set loading to false if there is an error
       });
   };
@@ -96,7 +99,11 @@ export const Search = () => {
           margin: "0 30px",
         }}
       >
-        <SearchResult eventMap={eventMap} artistName={search} />
+        <SearchResult
+          eventMap={eventMap}
+          artistName={search}
+          errorMessage={errorMessage}
+        />
       </div>
     </div>
   );
@@ -104,15 +111,23 @@ export const Search = () => {
 
 export default Search;
 
-const SearchResult = ({ eventMap, artistName }) => (
-  <Container className="d-flex justify-content-center event-card-container">
-    <Row xs={1} md={2} lg={4} xl={4} className="g-4 my-4">
-      {[...eventMap.values()].map((event) => (
-        <Col className="mb-4" key={event.id}>
-          {/* Add a unique key prop to the list of EventCards */}
-          <EventCard event={event} artistName={artistName} />
-        </Col>
-      ))}
-    </Row>
-  </Container>
-);
+const SearchResult = ({ eventMap, artistName, errorMessage }) => {
+  return (
+    <>
+      {/* display either no events found or the event cards */}
+      {errorMessage !== "" ? (
+        <h2>No events found</h2>
+      ) : (
+        <Container className="d-flex justify-content-center">
+          <Row xs={1} md={2} lg={4} xl={4} className="g-4">
+            {[...eventMap.values()].map((event) => (
+              <Col key={event.id}>
+                <EventCard event={event} artistName={artistName} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      )}
+    </>
+  );
+};
