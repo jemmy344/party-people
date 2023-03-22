@@ -23,7 +23,7 @@ export const Search = () => {
       .then(function (response) {
         const newEventMap = new Map();
         response.data._embedded.events.forEach((event) => {
-  
+
           const id = event.id;
           const eventName = event.name;
           const image = event.images.length > 0 ? event.images[0].url : null;
@@ -43,9 +43,12 @@ export const Search = () => {
             ticketInfo,
           });
         });
-        setEventMap(newEventMap);
-    
-        setIsSearchLoading(false); // Set loading to false after the API request completes
+
+        setTimeout(() => {
+          setEventMap(newEventMap);
+          setIsSearchLoading(false);
+        }, 3000);
+        // Set loading to false after the API request completes
         setErrorMessage("");
       })
       .catch(function (error) {
@@ -123,11 +126,11 @@ const SearchResult = ({ eventMap, artistName, errorMessage }) => {
         <h2>No events found</h2>
       ) : (
         <Container className="d-flex justify-content-center">
-          <Row xs={1} md={2} lg={4} xl={4} className="g-4">
+          <Row xs={1} md={2} lg={3} xl={4}  className="g-4 ">
             {[...eventMap.values()].map((event) => (
-              <Col key={event.id}>
+              <Col key={event.id} >
                 <EventCard event={event} artistName={artistName} />
-             
+
               </Col>
             ))}
           </Row>
