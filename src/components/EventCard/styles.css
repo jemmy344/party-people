@@ -1,55 +1,73 @@
 .event-card {
-    border: none !important;
-    height: 70vh;
-    border-radius: 24px;
-    opacity: 0.8;
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(23, 23, 24, 90);
-    cursor: pointer;
-  }
-  
-  .event-card:hover {
-    box-shadow: 10px 10px 30px rgba(15, 15, 13, 0.04);
-    transform: scale(1.01);
-    transition: 0.3s;
-    opacity: 1;
-  }
-  .event-card-img {
-    height: 40vh;
-    border-radius: 12px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    object-fit: cover;
-    object-position: top;
-  }
-  
+  border: none !important;
+  height: 70vh;
+  border-radius: 24px;
+  opacity: 0.8;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0f0e0e;
+  cursor: pointer;
+  background-color: #fff !important;
+}
+
+.event-card:hover {
+  box-shadow: 10px 10px 30px rgba(15, 15, 13, 0.04);
+  transform: scale(1.01);
+  transition: 0.3s;
+  opacity: 1;
+}
+.event-card-img {
+  height: 40vh;
+  border-radius: 12px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.event-card-title {
+  font-size: 1.4rem !important;
+  margin-bottom: 10px;
+}
+
+.event-card-body {
+  height: 30vh;
+  background-color: #fff !important;
+  border-radius: 24px;
+}
+
+.event-card-text {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.event-card-text ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-card-text ul li {
+  margin-top: 5%;
+}
+
+.event-ticket-button a {
+  padding: 8px 16px;
+  border-radius: 24px;
+  background-color: #f4511e;
+  color: #f9f7f7;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-right: 10px;
+}
+
+.event-ticket-button a:hover {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+@media only screen and (max-width: 480px) {
   .event-card-body {
-    height: 30vh;
-    background-color: rgb(241, 31, 31) !important;
-    border-radius: 24px;
+    padding-bottom: 300px;
   }
-  
-  .event-card-text {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-  
-  .event-card-text ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .event-card-text ul li {
-    margin-top: 5%;
-  }
-  
-  .event-card-text a {
-    text-decoration: none;
-  }
-  
-  .event-card-text a:hover {
-    text-decoration: underline;
-  }
-  
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Modal } from "react-bootstrap";
+import { Card, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import "./styles.css";
 
@@ -31,18 +31,32 @@ export const EventCard = ({ event }) => {
 
   return (
     <>
-      <Card className="event-card m-3 p-3" style={{ width: "18rem" }} onClick={handleCardClick}>
+      <Card
+        className="event-card"
+        style={{ width: "18rem" }}
+        onClick={handleCardClick}
+      >
         <Card.Img className="event-card-img" src={event.image} />
-        <Card.Body className="event-card-img">
-          <Card.Title>{event.eventName}</Card.Title>
-          <Card.Text>
+        <Card.Body className="event-card-body">
+          <Card.Title className="event-card-title">
+            {event.eventName}
+          </Card.Title>
+          <Card.Text className="event-card-text">
             <ul>
-              <li>Date:{event.date}</li>
+              <li>Date: {event.date}</li>
               <li>Time: {event.time}</li>
-              <li>Venue: {event.venue}</li>
-              <a href={event.venueInfo} target="_blank" rel="noreferrer">
-                Venue Info
-              </a>
+              {console.log(event.time)}
+              <li>
+                Venue:
+                <a href={event.venueInfo} target="_blank" rel="noreferrer">
+                  {event.venue}
+                </a>
+              </li>
+              <li className="event-ticket-button btn-block text-center mt-5">
+                <a href={event.ticketInfo} target="_blank" rel="noreferrer">
+                  Ticket Info
+                </a>
+              </li>
             </ul>
           </Card.Text>
         </Card.Body>
