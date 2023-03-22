@@ -31,7 +31,7 @@ export const EventCard = ({ event }) => {
 
   return (
     <>
-      <Card className="event-card" style={{ width: "18rem" }} onClick={handleCardClick}>
+      <Card className="event-card m-3 p-3" style={{ width: "18rem" }} onClick={handleCardClick}>
         <Card.Img className="event-card-img" src={event.image} />
         <Card.Body className="event-card-img">
           <Card.Title>{event.eventName}</Card.Title>
